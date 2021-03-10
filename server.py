@@ -13,7 +13,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
 
 def handle_client(conn, addr):
-    print(f"[NEW CONNECTION] {addr} connected.")
+    print(f"[NEW CONNECTION] {addr[0]}:{addr[1]} connected.")
 
     while True:
         msg_length = conn.recv(HEADER).decode(FORMAT)
@@ -22,10 +22,17 @@ def handle_client(conn, addr):
             msg = conn.recv(msg_length).decode(FORMAT)
             if msg == DISCONNECT_MESSAGE:
                 break
-            
-            output = subprocess.getoutput(msg).encode()
+
+            output = subprocess.getoutput(msg).encode(FORMAT)
+
+            output_len = len(output)
+            resp_len = str(output_len).encode(FORMAT)
+            resp_len += b' ' * (HEADER - len(resp_len))
+
+            conn.send(resp_len)
             conn.send(output)
 
+    print(f'[CLOSE CONNECTION] {addr[0]}:{addr[1]} closed.')
     conn.close()
         
 
