@@ -18,7 +18,7 @@ python socket.py -i -a "IP:PORT"
 
 <br>
 
-## parameters:
+## Parameters:
 
 - ``-l or --listen`` <br>
 It becomes a server.
