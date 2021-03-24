@@ -40,7 +40,7 @@ def help(msg):
     print('[SERVIDOR]')
     print('    -l  --listen                 -> Escuta em [IP]:[PORT]\n')
     print('[CLIENTE]')
-    print('    -i  --iteravel               -> Modo iteravel (cliente pode digitar mais de um comando)\n\n')
+    print('    -i  --iterable               -> Modo iterable (cliente pode digitar mais de um comando)\n\n')
     sys.exit(0)
     
 
@@ -122,7 +122,7 @@ def main():
         help('')
 
     try: 
-        opts, args = getopt.getopt(sys.argv[1:], 'ha:f:li', ['help', 'address=', 'format=', 'listen=', 'iteravel='])
+        opts, args = getopt.getopt(sys.argv[1:], 'ha:f:li', ['help', 'address=', 'format=', 'listen=', 'iterable='])
     except getopt.GetoptError as err:
         print(str(err))
         help('')
@@ -137,7 +137,7 @@ def main():
             FORMAT = a
         elif o in ('-l', '--listen'):
             LISTEN = True
-        elif o in ('-i', '--iteravel'):
+        elif o in ('-i', '--iterable'):
             ITERAVEL = True
         else:
             assert False, 'Opção não tratada'
