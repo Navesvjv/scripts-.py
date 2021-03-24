@@ -35,7 +35,6 @@ def help(msg):
         print(f'\n{msg}\n')
     print('\n============================= Black Hat =============================\n')
     print('    -h  --help                   -> Help')
-    print('    -k  --sizeheader             -> Tamanho do primeiro pacote (HEADER)')
     print('    -a  --address                -> [IP]:[PORT] server / [IP]:[PORT] target')
     print('    -f  --format                 -> Formato encode/decode\n')
     print('[SERVIDOR]')
@@ -123,7 +122,7 @@ def main():
         help('')
 
     try: 
-        opts, args = getopt.getopt(sys.argv[1:], 'hk:a:f:li', ['help', 'sizeheader=', 'address=', 'format=', 'listen=', 'iteravel='])
+        opts, args = getopt.getopt(sys.argv[1:], 'ha:f:li', ['help', 'address=', 'format=', 'listen=', 'iteravel='])
     except getopt.GetoptError as err:
         print(str(err))
         help('')
@@ -131,8 +130,6 @@ def main():
     for o, a in opts:
         if o in ('-h', '--help'):
             help('')
-        elif o in ('-k', '--sizeheader'):
-            HEADER = a
         elif o in ('-a', '--address'):
             IP, PORT = a.split(sep=':')
             PORT = int(PORT)
