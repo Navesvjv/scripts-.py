@@ -1,4 +1,4 @@
-## Black Hat - Python (socket)
+## SOCKET.PY - Black Hat
 
 #### For now the server only works on Linux.
 
